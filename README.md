@@ -1,6 +1,10 @@
 # Flask Website for Cyberbullying Classification
 
 This repository contains a Flask website that leverages a custom-made Tensorflow model to classify Twitter posts as either cyberbullying or not. Users can upload text data, and the model will provide predictions based on the input.
+
+
+![Website Image](./assets/websitePreview.png)
+
 ## Getting Started
 
 1. Clone this repository to your local machine.
@@ -12,7 +16,7 @@ pip install -r requirements.txt
 
 python index.py
 
-4. Access the website at `http://127.0.0.1:5000/`.
+4. Access the website at `http://127.0.0.1:8000/` once you have initiated the website locally.
 
 ## How It Works
 
