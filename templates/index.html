@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Bullying Classifier</title>
+    <style>
+        body {
+            background-color: #f2f2f2;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .title {
+            text-align: center;
+        }
+        .input-text {
+            width: 90%;
+            padding: 12px 20px;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .submit-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+        }
+        .hide-container {
+            display: none;
+        }
+        .predict-container {
+            text-align: center;
+            width: fit-content;
+            background-color: white;
+            box-shadow: 0 0 8px #ddd;
+            display: block;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="title">Cyber Bullying Classifier</h1>
+    <p>This is a tensorflow AI model that classifies a twiiter tweets between different types of cyber bullyings. The data was taken from thousands of tweets on X/Twitter</p>
+    <form action="/predict" method="POST" class="form">
+        <label for="text">Enter Tweet:</label><br>
+        <input id="text" name="text" type="text" class="input-text" placeholder="Enter Sentence">
+        <button type="submit" class="submit-button">Predict</button>
+    </form>
+    <div class={{hide}}>
+        <h2>{{pred}}</h2>
+        <ul>
+            <li>{{age}}</li>
+            <li>{{ethnicity}}</li>
+            <li>{{gender}}</li>
+            <li>{{not_cyberbullying}}</li>
+            <li>{{other_cyberbullying}}</li>
+            <li>{{religion}}</li>
+        </ul>
+    </div>
+</body>
+</html>
