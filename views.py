@@ -5,21 +5,13 @@ import os
 os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '1'
 
-import tensorflow as tf
 import pickle
 import numpy as np
-from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 max_length = 5018
 trunc_type='post'
 
-with open('label_encoder.pickle', 'rb') as label:
-    label_encoder = pickle.load(label)
-with open('tokenizer.pickle', 'rb') as handle:
-    tokenizer = pickle.load(handle)
-
-model = tf.keras.models.load_model('./tmp/cyber.keras')
 
 views = Blueprint(__name__, "views")
 
@@ -29,8 +21,16 @@ def home():
 
 @views.route('/predict', methods=['POST', 'GET'])
 def makePrediction():
+        with open('label_encoder.pickle', 'rb') as label:
+            label_encoder = pickle.load(label)
+        with open('tokenizer.pickle', 'rb') as handle:
+            tokenizer = pickle.load(handle)
+        with open('./tmp/cyber.pickle', 'rb') as handle:
+             model = pickle.load(handle)
         padded_text = pad_sequences(tokenizer.texts_to_sequences([request.form['text']]), maxlen=max_length, truncating=trunc_type)
+        print(padded_text)
         prediction = model.predict(padded_text, verbose=0)
+        print(prediction)
         label = ''
         for item in prediction:
             label = label_encoder.inverse_transform([np.argmax(item)])[0]
